@@ -3,7 +3,7 @@ class Database{
         this.host = 'localhost';
         this.user = 'root';
         this.pass = '';
-        this.database = 'express_login_and_registration';
+        this.database = 'aws_db';
     }
 }
 module.exports = new Database;

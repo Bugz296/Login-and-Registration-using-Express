@@ -20,19 +20,10 @@ class Users extends Controller{
     }
     async register(req, res){
         let post_data = req.body;
-        const user = require('../models/user');
-        /* Form Validation */
-        let form_validation = require('./form_validation');
-        form_validation.validate(post_data);
-        let result = form_validation.run("Not Null, No Number");
 
-        if(result.length == 0){
-            result = await user.register(post_data);
-            if(result){
-                res.redirect('/home');
-            }else{
-                res.redirect('/');
-            }
+        let result = await user.register(post_data);
+        if(result){
+            res.redirect('/home');
         }else{
             res.redirect('/');
         }
