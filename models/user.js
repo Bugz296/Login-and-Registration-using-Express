@@ -1,22 +1,17 @@
-const Model = require('./Model');
+const Model = require('./lib/Model');
 const Mysql = require('mysql');
 class User extends Model{
     constructor(){
         super();
     }
     async login_process(post_data){
-        let exists = await this.getDataByEmail(post_data.email);
-        if(exists.length != 0){
-            if(exists[0].password == post_data.password){
-                return true;
-            }
-        }else{
-            return false;
-        }
+        let [user_data] = await this.getDataByEmail(post_data.email);
+        return user_data;
     }
+
     async register(post_data){
         let exists = await this.getDataByEmail(post_data.email);
-        if(exists.length != 0){
+        if(exists.length){
             return false;
         }else{
             let values = [

@@ -16,6 +16,9 @@
         padding: 15px;
         display: none;
     }
+    .error_msg{
+        color: red;
+    }
     table{
         margin: auto;
         border: 1px solid #2B1B17;

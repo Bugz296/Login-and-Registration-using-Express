@@ -9,7 +9,6 @@ class FormValidation{
         this.data = post_data; //Sets the post data to be validated later on
     }
     async run(validations){
-console.log('validations :>> ', validations);
         /* Removes spaces and turn to array */
         let converted_string = validations.replaceAll(" ", "");
         converted_string = converted_string.toLowerCase();
