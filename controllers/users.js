@@ -24,14 +24,11 @@ class Users extends Controller{
 
         let result = await userModel.register(post_data);
         if(result){
-            res.redirect('/home');
+            res.render('home', {user: post_data});
         }else{
-            res.redirect('/');
+            res.redirect('/', result);
         }
         res.end();
-    }
-    home(req, res){
-        res.render('home', {yeah: "HELLO WORLD"});
     }
 }
 module.exports = new Users;

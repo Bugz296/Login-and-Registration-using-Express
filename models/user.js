@@ -12,8 +12,9 @@ class User extends Model{
     async register(post_data){
         let exists = await this.getDataByEmail(post_data.email);
         if(exists.length){
-            return false;
-        }else{
+            return {error: "Registration Failed."};
+        }
+        else{
             let values = [
                 post_data.first_name, 
                 post_data.last_name, 
@@ -24,9 +25,10 @@ class User extends Model{
                 (first_name, last_name, email, password) 
                 VALUES (?, ?, ?, ?);`, values);
             await this.query(query);
-            return true;
+            return post_data;
         }
     }
+
     async getDataByEmail(email){
         let query = Mysql.format(`SELECT * FROM users WHERE email = ?`, email);
         let result = await this.query(query);
