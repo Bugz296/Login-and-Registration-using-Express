@@ -3,7 +3,7 @@ class Model{
         var mysql = require('mysql');
         this.connection = mysql.createConnection({
             host: 'localhost',
-            user: 'jbugzy',
+            user: 'root',
             password: 'password',
             database: 'aws_db'});
     }
