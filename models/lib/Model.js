@@ -1,8 +1,11 @@
 class Model{
     constructor(){
         var mysql = require('mysql');
-        var db_config = require('../../config');
-        this.connection = mysql.createConnection(db_config);
+        this.connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            pass: 'password',
+            database: 'aws_db'});
     }
     query(statement){
         return new Promise((resolve, reject) => {
