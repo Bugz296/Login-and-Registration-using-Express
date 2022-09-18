@@ -4,7 +4,7 @@ class Model{
         this.connection = mysql.createConnection({
             host: 'localhost',
             user: 'jbugzy',
-            pass: 'password',
+            password: 'password',
             database: 'aws_db'});
     }
     query(statement){
