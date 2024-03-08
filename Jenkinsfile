@@ -17,7 +17,7 @@ pipeline {
     // tools { nodejs "NodeJS" }
     
     stages {
-        stage('Deploy LP3 Application') {
+        stage('Deploy Simple Application') {
             steps {
                 script {
                     Integer port = 8000
