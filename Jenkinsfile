@@ -40,9 +40,9 @@ pipeline {
                         ]
 
                         echo "Fetch branch and checkout to change branch"
-                        sshCommand remote: remote, command: "cd ${cd_directory} && sudo git fetch"
-                        sshCommand remote: remote, command: "cd ${cd_directory} && sudo git checkout ${sourceBranch}"
-                        sshCommand remote: remote, command: "cd ${cd_directory} && sudo git pull origin ${sourceBranch}
+                        sshCommand remote: remote, command: "cd ${directory} && sudo git fetch"
+                        sshCommand remote: remote, command: "cd ${directory} && sudo git checkout ${sourceBranch}"
+                        sshCommand remote: remote, command: "cd ${directory} && sudo git pull origin ${sourceBranch}
                     }
                   echo currentBuild.result
             }
