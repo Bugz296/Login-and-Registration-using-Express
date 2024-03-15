@@ -43,7 +43,7 @@ pipeline {
                         sshCommand remote: remote, command: "cd ${directory} && sudo git pull origin ${sourceBranch}"
 
                         withCredentials([file(credentialsId: jcb_sample.env.yml, variable: 'yaml_file')]) {
-                            sh 'mv \$yaml_file .'
+                            sh 'mv \$yaml_file ./'
                             sshPut remote: remote, from: "jcb_sample.env.yml", into: "/var/www/tmp_server_files/"
                         }
 
