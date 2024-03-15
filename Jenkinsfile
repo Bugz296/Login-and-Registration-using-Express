@@ -47,7 +47,7 @@ pipeline {
                             sshPut remote: remote, from: "./jcb_samples.env.yml", into: "/var/www/tmp_server_files/"
                         }
 
-                        sshCommand remote: remote, command: "sudo rm -rf ${directory}/jcb_sample.env.yml"
+                        sshCommand remote: remote, command: "sudo rm -rf ${directory}/jcb_samples.env.yml"
                         sshCommand remote: remote, command: "sudo mv /var/www/tmp_server_files/jcb_sample.env.yml ${directory}/"
                     }
 
