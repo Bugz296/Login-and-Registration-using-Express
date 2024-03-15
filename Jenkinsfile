@@ -28,8 +28,23 @@ pipeline {
                     echo "directory is ${directory}"
                     echo "staging_env is ${staging_env}"
 
-                    echo currentBuild.result
-                }
+
+                    withCredentials([sshUserPrivateKey(credentialsId: "ssh-ecdsa", keyFileVariable: 'SSH_KEY')]) {
+                        def remote = [
+                            name: 'ubuntu',
+                            port: 22,
+                            allowAnyHosts: true,
+                            host: "${applicationIPAddress}",
+                            user: "ubuntu",
+                            identityFile: SSH_KEY
+                        ]
+
+                        echo "Fetch branch and checkout to change branch"
+                        sshCommand remote: remote, command: "cd ${cd_directory} && sudo git fetch"
+                        sshCommand remote: remote, command: "cd ${cd_directory} && sudo git checkout ${sourceBranch}"
+                        sshCommand remote: remote, command: "cd ${cd_directory} && sudo git pull origin ${sourceBranch}
+                    }
+                  echo currentBuild.result
             }
         }
     } 
