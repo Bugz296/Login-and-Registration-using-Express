@@ -21,11 +21,11 @@ pipeline {
                 script {
                     Integer port = 8000
                     String directory = "/var/www/jcb.cipherville.com"
-                    String staging_env = "sample_env"
+                    String jcb_sample = "jcb_sample"
 
                     echo "port is ${port}"
                     echo "directory is ${directory}"
-                    echo "staging_env is ${staging_env}"
+                    echo "env is ${jcb_sample}"
 
                     withCredentials([sshUserPrivateKey(credentialsId: "id_ecdsa", keyFileVariable: 'SSH_KEY')]) {
                         def remote = [
@@ -43,7 +43,7 @@ pipeline {
                         sshCommand remote: remote, command: "cd ${directory} && sudo git pull origin ${sourceBranch}"
 
                         withCredentials([file(credentialsId: jcb_sample, variable: 'yaml_file')]) {
-                            sh 'mv \$yaml_file ./configs'
+                            sh 'mv \$yaml_file ./'
                             sshPut remote: remote, from: "./jcb_sample.env.yml", into: "/var/www/tmp_server_files/"
                         }
 
