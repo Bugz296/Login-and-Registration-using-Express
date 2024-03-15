@@ -42,13 +42,13 @@ pipeline {
                         sshCommand remote: remote, command: "cd ${directory} && sudo git checkout ${sourceBranch}"
                         sshCommand remote: remote, command: "cd ${directory} && sudo git pull origin ${sourceBranch}"
 
-                        // withCredentials([file(credentialsId: staging_env, variable: 'yaml_file')]) {
-                        //     sh 'mv \$yaml_file ./configs'
-                        //     sshPut remote: remote, from: "./configs/sample.env.yml", into: "/var/www/tmp_server_files/"
-                        // }
+                        withCredentials([file(credentialsId: jcb_sample.env.yml, variable: 'yaml_file')]) {
+                            sh 'mv \$yaml_file .'
+                            sshPut remote: remote, from: "jcb_sample.env.yml", into: "/var/www/tmp_server_files/"
+                        }
 
-                        // sshCommand remote: remote, command: "sudo rm -rf ${directory}/configs/sample.env.yml"
-                        // sshCommand remote: remote, command: "sudo mv /var/www/tmp_server_files/sample.env.yml ${directory}/configs/"
+                        sshCommand remote: remote, command: "sudo rm -rf ${directory}/jcb_sample.env.yml"
+                        sshCommand remote: remote, command: "sudo mv /var/www/tmp_server_files/jcb_sample.env.yml ${directory}/"
                     }
 
                     echo currentBuild.result

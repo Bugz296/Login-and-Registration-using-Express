@@ -1,3 +1,4 @@
+const { SAMPLE } = require("../constants");
 const userModel = require('../models/user');
 const Controller = require('./Controller');
 class Users extends Controller{
@@ -5,7 +6,7 @@ class Users extends Controller{
         super();
     }
     index(req, res){
-        res.render('index', {error: ''});
+        res.render('index', {error: '', message: SAMPLE});
     }
     async login(req, res){
         let post_data = req.body;
