@@ -27,7 +27,7 @@ pipeline {
                     echo "directory is ${directory}"
                     echo "staging_env is ${staging_env}"
 
-                    withCredentials([sshUserPrivateKey(credentialsId: "ssh-credentials", keyFileVariable: 'SSH_KEY')]) {
+                    withCredentials([sshUserPrivateKey(credentialsId: "id_ecdsa", keyFileVariable: 'SSH_KEY')]) {
                         def remote = [
                             name: 'ubuntu',
                             port: 22,
