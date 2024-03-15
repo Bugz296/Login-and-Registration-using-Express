@@ -44,7 +44,7 @@ pipeline {
 
                         withCredentials([file(credentialsId: jcb_sample, variable: 'yaml_file')]) {
                             sh 'mv \$yaml_file ./'
-                            sshPut remote: remote, from: "./jcb_samplessssssssssss.env.yml", into: "/var/www/tmp_server_files/"
+                            sshPut remote: remote, from: "./jcb_sample.env.yml", into: "/var/www/tmp_server_files/"
                         }
 
                         sshCommand remote: remote, command: "sudo rm -rf ${directory}/jcb_sample.env.yml"
